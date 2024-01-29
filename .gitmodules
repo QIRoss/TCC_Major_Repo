@@ -1,0 +1,12 @@
+[submodule "TCC_Ambulance_Interface"]
+	path = TCC_Ambulance_Interface
+	url = https://github.com/QIRoss/TCC_Ambulance_Interface
+[submodule "TCC_Dummy_GPS_API"]
+	path = TCC_Dummy_GPS_API
+	url = https://github.com/QIRoss/TCC_Dummy_GPS_API
+[submodule "TCC_NginX_API_Aggregator"]
+	path = TCC_NginX_API_Aggregator
+	url = https://github.com/QIRoss/TCC_NginX_API_Aggregator
+[submodule "TCC_Voice_Processing"]
+	path = TCC_Voice_Processing
+	url = https://github.com/QIRoss/TCC_Voice_Processing

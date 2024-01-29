@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  tcc_ambulance_interface:
+    build:
+      context: ./TCC_Ambulance_Interface
+      dockerfile: Dockerfile
+    network_mode: "host"
+
+  tcc_dummy_gps_api:
+    build:
+      context: ./TCC_Dummy_GPS_API
+      dockerfile: Dockerfile
+    network_mode: "host"
+
+  tcc_voice_processing:
+    build:
+      context: ./TCC_Voice_Processing
+      dockerfile: Dockerfile
+    network_mode: "host"
