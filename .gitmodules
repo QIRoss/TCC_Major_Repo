@@ -10,3 +10,6 @@
 [submodule "TCC_Voice_Processing"]
 	path = TCC_Voice_Processing
 	url = https://github.com/QIRoss/TCC_Voice_Processing
+[submodule "TCC_CI_CD_Pipeline"]
+	path = TCC_CI_CD_Pipeline
+	url = https://github.com/QIRoss/TCC_CI_CD_Pipeline
