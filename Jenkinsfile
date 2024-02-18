@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        TZ = 'America/Sao_Paulo'
+    }
+
     stages {
         stage('Echo Working') {
             steps {
@@ -10,8 +14,8 @@ pipeline {
         stage('Print Time') {
             steps {
                 script {
-                    def currentTime = sh(script: 'date "+%H:%M:%S"', returnStdout: true).trim()
-                    echo "Current Time: ${currentTime}"
+                    def currentTime = sh(script: 'TZ=America/Sao_Paulo date "+%H:%M:%S"', returnStdout: true).trim()
+                    echo "Current Time in Brazil: ${currentTime}"
                 }
             }
         }
