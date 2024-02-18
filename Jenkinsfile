@@ -19,6 +19,17 @@ pipeline {
                 }
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                checkout scm
+                
+                dir('TCC_Dummy_GPS_API') {
+                    script {
+                        sh 'docker build -t my-docker-image .'
+                    }
+                }
+            }
+        }
     }
 
     post {
