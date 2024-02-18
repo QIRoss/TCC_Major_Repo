@@ -1,19 +1,42 @@
 pipeline {
     agent any
-    
+
+    environment {
+        TZ = 'America/Sao_Paulo'
+    }
+
     stages {
-        stage('Check Workspace') {
+        stage('Print Time') {
             steps {
                 script {
-                    checkout scm
-                    
-                    dir('TCC_Dummy_GPS_API') {
-                        sh 'pwd'
-                        
-                        sh 'ls -l'
+                    def currentTime = sh(script: 'TZ=America/Sao_Paulo date "+%H:%M:%S"', returnStdout: true).trim()
+                    echo "Current Time in Brazil: ${currentTime}"
+                }
+            }
+        }
+        stage('Update Submodules') {
+            steps {
+                script {
+                    sh 'git submodule update --init --recursive'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                checkout scm
+                
+                dir('TCC_Dummy_GPS_API') {
+                    script {
+                        sh 'docker build -t my-docker-image .'
                     }
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
