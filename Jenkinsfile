@@ -27,10 +27,8 @@ pipeline {
                 
                 dir('TCC_Dummy_GPS_API') {
                     sh 'pwd'
-                    
                     sh 'ls -l'
-
-                    sh 'docker build -t my-docker-image .'
+                    sh 'docker build -t dummy_gps_image .'
                 }
             }
         }
