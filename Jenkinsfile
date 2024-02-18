@@ -30,7 +30,7 @@ pipeline {
                     
                     sh 'ls -l'
 
-                    sh 'docker build -t my-docker-image .
+                    sh 'docker build -t my-docker-image .'
                 }
             }
         }
