@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Echo Working') {
             steps {
-                echo 'working'
+                echo 'working . . .'
             }
         }
         stage('Print Time') {
