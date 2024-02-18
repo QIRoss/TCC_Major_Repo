@@ -7,11 +7,11 @@ pipeline {
                 echo 'working'
             }
         }
-        stage('Print Hour') {
+        stage('Print Time') {
             steps {
                 script {
-                    def currentHour = sh(script: 'date +%H', returnStdout: true).trim()
-                    echo "Current Hour: ${currentHour}"
+                    def currentTime = sh(script: 'date "+%H:%M:%S"', returnStdout: true).trim()
+                    echo "Current Time: ${currentTime}"
                 }
             }
         }
