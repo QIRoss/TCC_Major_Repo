@@ -29,9 +29,8 @@ pipeline {
                     sh 'pwd'
                     
                     sh 'ls -l'
-                    script {
-                        dockerapp = docker.build("tcc-dummy-gps-api:latest")
-                    }
+
+                    sh 'docker build -t my-docker-image .
                 }
             }
         }
