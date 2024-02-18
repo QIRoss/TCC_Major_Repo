@@ -27,7 +27,7 @@ pipeline {
                 
                 dir('TCC_Dummy_GPS_API') {
                     script {
-                        sh 'docker build -t my-docker-image .'
+                        dockerapp = docker.build("tcc-dummy-gps-api:latest")
                     }
                 }
             }
