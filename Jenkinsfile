@@ -26,6 +26,9 @@ pipeline {
                 checkout scm
                 
                 dir('TCC_Dummy_GPS_API') {
+                    sh 'pwd'
+                    
+                    sh 'ls -l'
                     script {
                         dockerapp = docker.build("tcc-dummy-gps-api:latest")
                     }
