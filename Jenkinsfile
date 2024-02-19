@@ -120,7 +120,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                sh 'pwd'
+                sh 'ansible-playbook -i 192.168.1.4, docker-compose-playbook.yml'
             }
         }
     }
