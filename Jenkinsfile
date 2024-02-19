@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Test Dummy GPS Service') {
             steps {
-                def hostIpAddress = sh(script: "ip route | awk '/default/ { print $3 }'", returnStdout: true).trim()
+                def hostIpAddress = sh(script: "ip route | awk '/default/ { print \$3 }'", returnStdout: true).trim()
                 sh "curl ${hostIpAddress}:2947"
             }
         }
