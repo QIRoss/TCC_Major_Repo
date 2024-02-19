@@ -6,7 +6,7 @@
   tasks:
     - name: Run Docker Compose up
       become: yes
-      shell: docker compose up --build -d
+      shell: docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
       args:
         executable: /bin/bash
         chdir: /home/qiross/code/TCC
