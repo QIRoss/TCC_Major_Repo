@@ -1,6 +1,6 @@
 ---
 - name: Run Docker Compose
-  hosts: localhost
+  hosts: 192.168.1.4
   gather_facts: no
 
   tasks:
