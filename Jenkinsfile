@@ -67,7 +67,7 @@ pipeline {
                 sleep time: 5, unit: 'SECONDS'
             }
         }
-        stage('Test Voice Processing Service') {
+        stage('Test Voice Processing Service for ') {
             steps {
                 script {
                     def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
@@ -79,7 +79,7 @@ pipeline {
                     if (matchFound) {
                         println "Match found: true"
                     } else {
-                        println "Match found: false"
+                        error "Match not found"
                     }
                 }
             }
