@@ -120,9 +120,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                dir('') {
-                    sh 'ansible-playbook -i 192.168.1.4, playbook-deploy.yml'
-                }
+                sh 'docker compose up --build -d'
             }
         }
     }
