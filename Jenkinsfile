@@ -39,9 +39,11 @@ pipeline {
         }
         stage('Test Dummy GPS Service') {
             steps {
-                def ipAddress = sh(script: "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dummy_gps_container", returnStdout: true).trim()
-                def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' ${ipAddress}:2947", returnStdout: true).trim()
-                echo "Response code: ${response}"
+                script {
+                    def ipAddress = sh(script: "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dummy_gps_container", returnStdout: true).trim()
+                    def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' ${ipAddress}:2947", returnStdout: true).trim()
+                    echo "Response code: ${response}"
+                }
             }
         }
     }
