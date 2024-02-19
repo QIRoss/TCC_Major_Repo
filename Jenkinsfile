@@ -36,7 +36,7 @@ pipeline {
                 sh 'docker run -d --network jenkins_network --name dummy_gps_container tcc-tcc_dummy_gps_api'
             }
         }
-        stage('Wait for Service Startup') {
+        stage('Wait for Dummy GPS API Service Startup') {
             steps {
                 echo 'Waiting for service to start...'
                 sleep time: 5, unit: 'SECONDS'
@@ -56,12 +56,12 @@ pipeline {
                 }
             }
         }
-        stage('Run Dummy GPS API Container') {
+        stage('Run Voice Processing Container') {
             steps {
                 sh 'docker run -d --network jenkins_network --name voice_processing_container tcc-tcc_voice_processing'
             }
         }
-        stage('Wait for Service Startup') {
+        stage('Wait for Voice Processing Service Startup') {
             steps {
                 echo 'Waiting for service to start...'
                 sleep time: 5, unit: 'SECONDS'
