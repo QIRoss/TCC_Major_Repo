@@ -70,7 +70,7 @@ pipeline {
         stage('Test Voice Processing Service for ') {
             steps {
                 script {
-                    def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
+                    def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/blood_loss_transfusion.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
                     echo "Curl Output: ${curlOutput}"
                     def regexPattern = /respiratory|smoke|inhalation/
                     
