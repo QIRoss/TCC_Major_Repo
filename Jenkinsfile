@@ -120,7 +120,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                dir() {
+                dir('') {
                     sh 'ansible-playbook -i 192.168.1.4, playbook-deploy.yml'
                 }
             }
