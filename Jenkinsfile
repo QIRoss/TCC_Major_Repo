@@ -32,6 +32,16 @@ pipeline {
                 }
             }
         }
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 2947:2947 --name dummy_gps_container dummy_gps_image'
+            }
+        }
+        stage('Test Dummy GPS Service') {
+            steps {
+                sh 'curl localhost:2947'
+            }
+        }
     }
 
     post {
