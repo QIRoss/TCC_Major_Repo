@@ -46,6 +46,7 @@ pipeline {
 
     post {
         always {
+            sh 'docker stop dummy_gps_container'
             echo 'Pipeline execution completed.'
         }
     }
