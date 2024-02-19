@@ -67,11 +67,13 @@ pipeline {
                 sleep time: 5, unit: 'SECONDS'
             }
         }
-        // stage('Test Voice Processing Service') {
-        //     steps {
-        //         sh "curl voice_processing_container:5000"
-        //     }
-        // }
+        stage('Test Voice Processing Service') {
+            steps {
+                dir('TCC_Voice_Processing') {
+                    sh 'curl -X POST -F "file=@/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe'
+                }
+            }
+        }
     }
 
     post {
