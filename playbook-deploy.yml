@@ -1,11 +1,10 @@
 ---
 - name: Run Docker Compose
-  hosts: 192.168.1.4
+  hosts: localhost
   gather_facts: no
 
   tasks:
     - name: Run Docker Compose up
-      become: yes
       shell: docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
       args:
         executable: /bin/bash
