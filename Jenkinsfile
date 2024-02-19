@@ -70,7 +70,7 @@ pipeline {
         stage('Test Voice Processing Service') {
             steps {
                 dir('TCC_Voice_Processing') {
-                    sh 'curl -X POST -F "file=@/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe'
+                    sh 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe'
                 }
             }
         }
