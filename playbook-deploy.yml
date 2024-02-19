@@ -6,7 +6,7 @@
   tasks:
     - name: Print current directory
       shell: |
-        echo "Current directory: $(pwd)"
+        touch file.txt
       register: current_directory
       changed_when: false
 
