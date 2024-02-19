@@ -39,9 +39,7 @@ pipeline {
         }
         stage('Test Dummy GPS Service') {
             steps {
-                script {
-                    sh "curl dummy_gps_container:2947"
-                }
+                sh "curl dummy_gps_container:2947"
             }
         }
     }
