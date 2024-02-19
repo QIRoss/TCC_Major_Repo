@@ -4,7 +4,14 @@
   gather_facts: no
 
   tasks:
+    - name: Print current directory
+      shell: pwd
+      register: current_directory
+      changed_when: false
+
     - name: Run Docker Compose up
-      shell: docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
+      shell: |
+        pwd
+        docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
       args:
         executable: /bin/bash
