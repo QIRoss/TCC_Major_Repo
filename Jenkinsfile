@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Test Dummy GPS Service') {
             steps {
-                sh 'curl localhost:2947'
+                sh 'curl host.docker.internal:2947'
             }
         }
     }
