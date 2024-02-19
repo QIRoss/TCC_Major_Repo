@@ -118,6 +118,12 @@ pipeline {
                 }
             }
         }
+        stage('Deploy'){
+            steps {
+                def mainMachinePath = env.WORKSPACE
+                println "Path to main machine: ${mainMachinePath}"
+            }
+        }
     }
 
     post {
