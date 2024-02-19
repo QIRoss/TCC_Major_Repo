@@ -1,6 +1,6 @@
 ---
 - name: Run Docker Compose
-  hosts: localhost
+  hosts: 192.
   gather_facts: no
 
   tasks:
@@ -9,4 +9,3 @@
       shell: docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
       args:
         executable: /bin/bash
-        chdir: /home/qiross/code/TCC
