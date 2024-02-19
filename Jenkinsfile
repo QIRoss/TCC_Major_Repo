@@ -89,7 +89,7 @@ pipeline {
                 script {
                     def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/blood_loss_transfusion.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
                     echo "Curl Output: ${curlOutput}"
-                    def regexPattern = /blood|hemorrhage|transfusion/
+                    def regexPattern = /blood|hemorrhage|transfusion|broken|leg|legs|arm|arms/
                     
                     def matchFound = (curlOutput =~ regexPattern).find()
                     
