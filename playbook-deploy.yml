@@ -5,13 +5,12 @@
 
   tasks:
     - name: Print current directory
-      shell: pwd
+      shell: |
+        echo "Current directory: $(pwd)"
       register: current_directory
       changed_when: false
 
     - name: Run Docker Compose up
-      shell: |
-        pwd
-        docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
+      shell: docker compose -f /home/qiross/code/TCC/docker-compose.yml up --build -d
       args:
         executable: /bin/bash
