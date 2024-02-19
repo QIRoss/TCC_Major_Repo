@@ -34,14 +34,13 @@ pipeline {
         }
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 2947:2947 --name dummy_gps_container dummy_gps_image'
+                sh 'docker run -d --network jenkins_network --name dummy_gps_container dummy_gps_image'
             }
         }
         stage('Test Dummy GPS Service') {
             steps {
                 script {
-                    def hostIpAddress = sh(script: "ip route | awk '/default/ { print \$3 }'", returnStdout: true).trim()
-                    sh "curl ${hostIpAddress}:2947"
+                    sh "curl dummy_gps_container:2947"
                 }
             }
         }
