@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Print Time') {
+        stage('Timestamp') {
             steps {
                 script {
                     def currentTime = sh(script: 'TZ=America/Sao_Paulo date "+%H:%M:%S"', returnStdout: true).trim()
@@ -18,23 +18,22 @@ pipeline {
             steps {
                 script {
                     sh 'git submodule update --init --recursive'
+                    checkout scm
                 }
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Dummy GPS API Image') {
             steps {
-                checkout scm
-                
                 dir('TCC_Dummy_GPS_API') {
                     sh 'pwd'
                     sh 'ls -l'
-                    sh 'docker build -t dummy_gps_image .'
+                    sh 'docker build -t tcc-tcc_dummy_gps_api .'
                 }
             }
         }
-        stage('Run Docker Container') {
+        stage('Run Dummy GPS API Container') {
             steps {
-                sh 'docker run -d --network jenkins_network --name dummy_gps_container dummy_gps_image'
+                sh 'docker run -d --network jenkins_network --name dummy_gps_container tcc-tcc_dummy_gps_api'
             }
         }
         stage('Wait for Service Startup') {
@@ -48,12 +47,39 @@ pipeline {
                 sh "curl dummy_gps_container:2947"
             }
         }
+        stage('Build Voice Processing Image') {
+            steps {
+                dir('TCC_Voice_Processing') {
+                    sh 'pwd'
+                    sh 'ls -l'
+                    sh 'docker build -t tcc-tcc_voice_processing .'
+                }
+            }
+        }
+        stage('Run Dummy GPS API Container') {
+            steps {
+                sh 'docker run -d --network jenkins_network --name voice_processing_container tcc-tcc_voice_processing'
+            }
+        }
+        stage('Wait for Service Startup') {
+            steps {
+                echo 'Waiting for service to start...'
+                sleep time: 5, unit: 'SECONDS'
+            }
+        }
+        // stage('Test Voice Processing Service') {
+        //     steps {
+        //         sh "curl voice_processing_container:5000"
+        //     }
+        // }
     }
 
     post {
         always {
             sh 'docker stop dummy_gps_container'
             sh 'docker rm dummy_gps_container'
+            sh 'docker stop voice_processing_container'
+            sh 'docker rm voice_processing_container'
             echo 'Pipeline execution completed.'
         }
     }
