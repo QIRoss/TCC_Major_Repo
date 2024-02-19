@@ -67,12 +67,46 @@ pipeline {
                 sleep time: 5, unit: 'SECONDS'
             }
         }
-        stage('Test Voice Processing Service for ') {
+        stage('Test Voice Processing Service for Smoke Inhalation') {
+            steps {
+                script {
+                    def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/smoke_inhalation_respiratory_distress.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
+                    echo "Curl Output: ${curlOutput}"
+                    def regexPattern = /respiratory|smoke|inhalation/
+                    
+                    def matchFound = (curlOutput =~ regexPattern).find()
+                    
+                    if (matchFound) {
+                        println "Match found: true"
+                    } else {
+                        error "Match not found"
+                    }
+                }
+            }
+        }
+        stage('Test Voice Processing Service for Blood Loss') {
             steps {
                 script {
                     def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/blood_loss_transfusion.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
                     echo "Curl Output: ${curlOutput}"
-                    def regexPattern = /respiratory|smoke|inhalation/
+                    def regexPattern = /blood|hemorrhage|transfusion/
+                    
+                    def matchFound = (curlOutput =~ regexPattern).find()
+                    
+                    if (matchFound) {
+                        println "Match found: true"
+                    } else {
+                        error "Match not found"
+                    }
+                }
+            }
+        }
+        stage('Test Voice Processing Service for Orthopedics') {
+            steps {
+                script {
+                    def curlOutput = sh(script: 'curl -X POST -F "file=@/var/jenkins_home/workspace/TCC CI Pipeline/TCC_Voice_Processing/audios/car_accident_legs_arms.wav" voice_processing_container:5000/transcribe', returnStdout: true).trim()
+                    echo "Curl Output: ${curlOutput}"
+                    def regexPattern = /fracture|bone|bones|orthopedic/
                     
                     def matchFound = (curlOutput =~ regexPattern).find()
                     
