@@ -35,12 +35,17 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh 'docker run -d --network jenkins_network --name dummy_gps_container dummy_gps_image'
-                sh "curl 172.22.0.3:2947"
+            }
+        }
+        stage('Wait for Service Startup') {
+            steps {
+                echo 'Waiting for service to start...'
+                sleep time: 5, unit: 'SECONDS'
             }
         }
         stage('Test Dummy GPS Service') {
             steps {
-                sh "curl 172.22.0.3:2947"
+                sh "curl dummy_gps_container:2947"
             }
         }
     }
