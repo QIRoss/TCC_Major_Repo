@@ -120,10 +120,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                script {
-                    def mainMachinePath = env.WORKSPACE
-                    println "Path to main machine: ${mainMachinePath}"
-                }
+                sh 'pwd'
             }
         }
     }
