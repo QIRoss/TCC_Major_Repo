@@ -121,6 +121,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 dir('') {
+                    sh 'pwd'
                     sh 'ansible-playbook -i 192.168.1.4, playbook-deploy.yml'
                 }
             }
