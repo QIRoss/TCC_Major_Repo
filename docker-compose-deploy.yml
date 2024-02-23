@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  tcc_ambulance_interface:
+    build:
+      context: ./TCC_Ambulance_Interface
+      dockerfile: Dockerfile
+    network_mode: "host"
+
+  tcc_dummy_gps_api:
+    image: qiross/tcc-tcc_dummy_gps_api:latest
+    network_mode: "host"
+
+  tcc_voice_processing:
+    image: qiross/tcc-tcc_voice_processing:latest
+    network_mode: "host"
