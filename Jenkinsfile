@@ -118,19 +118,19 @@ pipeline {
                 }
             }
         }
-        // stage('Push images to Docker Hub') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: '0f4b64ec-2891-454a-bd68-f4de16081621', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-        //             sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        stage('Push images to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: '0f4b64ec-2891-454a-bd68-f4de16081621', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
                     
-        //             sh "docker tag tcc-tcc_voice_processing qiross/tcc-tcc_voice_processing:latest"
-        //             sh "docker push qiross/tcc-tcc_voice_processing:latest"
+                    sh "docker tag tcc-tcc_voice_processing qiross/tcc-tcc_voice_processing:latest"
+                    sh "docker push qiross/tcc-tcc_voice_processing:latest"
 
-        //             sh "docker tag tcc-tcc_dummy_gps_api qiross/tcc-tcc_dummy_gps_api:latest"
-        //             sh "docker push qiross/tcc-tcc_dummy_gps_api:latest"
-        //         }
-        //     }
-        // }
+                    sh "docker tag tcc-tcc_dummy_gps_api qiross/tcc-tcc_dummy_gps_api:latest"
+                    sh "docker push qiross/tcc-tcc_dummy_gps_api:latest"
+                }
+            }
+        }
         stage('Deploy'){
             steps {
                 sh 'docker compose -f docker-compose-deploy.yml up --build -d'
