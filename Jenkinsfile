@@ -133,6 +133,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
+                sh './stop_all_except_jenkins.sh'
                 sh 'docker compose -f docker-compose-deploy.yml up --build -d'
                 // sh 'docker compose up --build -d'
             }
