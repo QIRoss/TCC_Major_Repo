@@ -135,6 +135,7 @@ pipeline {
             steps {
                 sh './stop_all_except_jenkins.sh'
                 sh 'docker compose -f docker-compose-deploy.yml up --build -d'
+                sh 'cd TCC_NginX_API_Aggregator && docker compose up -d'
                 // sh 'docker compose up --build -d'
             }
         }
